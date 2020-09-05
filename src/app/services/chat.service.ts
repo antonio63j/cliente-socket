@@ -14,14 +14,18 @@ export class ChatService {
   public enviarMensaje(mensaje: string): void {
 
     const payload = {
-      de: 'Antonio',
+      de: this.wsService.getUsuario().nombre,
       cuerpo: mensaje
     };
-    this.wsService.enviar('mensaje', payload);
+    this.wsService.emit('mensaje', payload);
   }
 
-  public escucharMensaje(): Observable<unknown>{
+  public escucharMensajeBroadcast(): Observable<unknown>{
     return this.wsService.escuchar('mensaje-broadcast');
+  }
+
+  public escuchaMesajePrivado(): Observable<unknown> {
+    return this.wsService.escuchar('mensaje-privado');
   }
 
 }

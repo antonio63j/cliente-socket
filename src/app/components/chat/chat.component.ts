@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 export class ChatComponent implements OnInit, OnDestroy {
 
   public texto = '';
-  private suscripciónChat: Subscription;
+  private suscripcionChat: Subscription;
 
   listaMensajes: any [] = [];
 
@@ -21,7 +21,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.suscripciónChat = this.chatService.escucharMensaje().subscribe (msg => {
+    this.suscripcionChat = this.chatService.escucharMensajeBroadcast().subscribe (msg => {
       console.log('leido broadcast' + JSON.stringify(msg));
       this.listaMensajes.push (msg);
     }
@@ -35,7 +35,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.suscripciónChat.unsubscribe();
+    this.suscripcionChat.unsubscribe();
   }
 
 }
