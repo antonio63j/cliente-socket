@@ -28,4 +28,8 @@ export class ChatService {
     return this.wsService.escuchar('mensaje-privado');
   }
 
+  public escuchaMesajeUsuariosActivos(): Observable<unknown> {
+    return this.wsService.escuchar('mensaje-usuarios-activos');
+  }
+
 }
